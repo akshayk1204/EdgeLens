@@ -51,9 +51,7 @@ wrangler publish
 Example endpoint: https://edgelens-probe.yourdomain.workers.dev
 
 2. Deploy Probe Script on Global VM
-bash
-Copy
-Edit
+
 # Connect to your VM
 git clone https://github.com/YOUR_ORG/edgelens
 cd edgelens/probe
@@ -61,9 +59,7 @@ npm install
 node index.js
 The script pings the Worker URL, calculates latency, and posts results to your backend:
 
-json
-Copy
-Edit
+
 POST /api/probe
 {
   "colo": "SJC",
@@ -76,17 +72,13 @@ You can automate this via cron or systemd.
 3. Backend API Setup
 A simple Express server with PostgreSQL:
 
-bash
-Copy
-Edit
+
 cd backend
 npm install
 node server.js
 Example Route:
 
-js
-Copy
-Edit
+
 POST /api/probe
 {
   "colo": "SJC",
