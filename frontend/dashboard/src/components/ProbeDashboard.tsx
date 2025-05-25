@@ -20,8 +20,6 @@ import {
 } from '@mui/material';
 import { CheckCircle, Error as ErrorIcon } from '@mui/icons-material';
 
-const VALID_REGIONS = ['IAD', 'SAC', 'LAX', 'ORD', 'DFW', 'MIA', 'SJC'];
-
 interface ProbeData {
   colo: string;
   region: string;
@@ -35,24 +33,23 @@ const ProbeDashboard: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    axios.get<ProbeData[]>('http://localhost:3001/api/probes')
-      .then(response => {
-        const filtered: Record<string, ProbeData> = {};
-        response.data.forEach(probe => {
-          const region = probe.region.toUpperCase();
-          if (VALID_REGIONS.includes(region)) {
-            if (
-              !filtered[region] ||
-              new Date(probe.timestamp) > new Date(filtered[region].timestamp)
-            ) {
-              filtered[region] = probe;
-            }
+    axios
+      .get<ProbeData[]>('http://localhost:3001/api/probes')
+      .then((response) => {
+        const latestByRegion: Record<string, ProbeData> = {};
+        response.data.forEach((probe) => {
+          const regionKey = probe.region.toUpperCase();
+          if (
+            !latestByRegion[regionKey] ||
+            new Date(probe.timestamp) > new Date(latestByRegion[regionKey].timestamp)
+          ) {
+            latestByRegion[regionKey] = probe;
           }
         });
-        setProbes(Object.values(filtered));
+        setProbes(Object.values(latestByRegion));
         setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         console.error('Error fetching probes:', err);
         setError('Failed to load probe data.');
         setLoading(false);
@@ -64,7 +61,9 @@ const ProbeDashboard: React.FC = () => {
     : '-';
 
   const lastUpdated = probes.length
-    ? new Date(Math.max(...probes.map(p => new Date(p.timestamp).getTime()))).toLocaleString()
+    ? new Date(
+        Math.max(...probes.map((p) => new Date(p.timestamp).getTime()))
+      ).toLocaleString()
     : '-';
 
   if (loading) {
@@ -177,7 +176,12 @@ const ProbeDashboard: React.FC = () => {
               {probes.map((probe, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                    <Chip label={probe.region} color="primary" variant="outlined" size="small" />
+                    <Chip
+                      label={probe.region.toUpperCase()}
+                      color="primary"
+                      variant="outlined"
+                      size="small"
+                    />
                   </TableCell>
                   <TableCell sx={{ color: 'white' }}>{probe.colo}</TableCell>
                   <TableCell sx={{ color: 'white' }}>

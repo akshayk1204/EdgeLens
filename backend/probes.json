@@ -4,5 +4,41 @@
     "region": "SJC",
     "timestamp": "2025-05-23T22:00:00.000Z",
     "latency": 123
+  },
+  {
+    "colo": "SJC",
+    "region": "us-west",
+    "timestamp": "2025-05-22T23:10:00.000Z",
+    "latency": 102
+  },
+  {
+    "colo": "FRA",
+    "region": "eu-central",
+    "timestamp": "2025-05-22T23:12:00.000Z",
+    "latency": 187
+  },
+  {
+    "colo": "SIN",
+    "region": "ap-southeast",
+    "timestamp": "2025-05-22T23:14:00.000Z",
+    "latency": 245
+  },
+  {
+    "colo": "SYD",
+    "region": "ap-south",
+    "timestamp": "2025-05-22T23:16:00.000Z",
+    "latency": 278
+  },
+  {
+    "colo": "JFK",
+    "region": "us-east",
+    "timestamp": "2025-05-22T23:18:00.000Z",
+    "latency": 89
+  },
+  {
+    "colo": "GRU",
+    "region": "sa-east",
+    "timestamp": "2025-05-22T23:20:00.000Z",
+    "latency": 302
   }
 ]
