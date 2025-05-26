@@ -39,25 +39,3 @@ async function fetchFromCloudflare() {
     };
   }
 }
-
-async function postToBackend(probe) {
-  try {
-    const res = await axios.post(BACKEND_API, probe);
-    console.log(`✅ Probe sent for region ${probe.region}:`, res.data.message);
-  } catch (err) {
-    console.error(`❌ Failed to POST to backend:`, err.message);
-  }
-}
-
-async function run() {
-  const probe = await fetchFromCloudflare();
-  console.log('📡 Probe result:', probe);
-
-  if (!probe.error) {
-    await postToBackend(probe);
-  } else {
-    console.error('⚠️ Skipping backend POST due to error.');
-  }
-}
-
-run();

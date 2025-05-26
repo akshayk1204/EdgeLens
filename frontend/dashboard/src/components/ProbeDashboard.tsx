@@ -34,7 +34,7 @@ const ProbeDashboard: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get<ProbeData[]>('http://localhost:3001/api/probes')
+      .get<ProbeData[]>('/api/probes')
       .then((response) => {
         const latestByRegion: Record<string, ProbeData> = {};
         response.data.forEach((probe) => {

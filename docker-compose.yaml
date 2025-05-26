@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3005:3001"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend/dashboard
+    ports:
+      - "8080:80"
+    restart: unless-stopped
