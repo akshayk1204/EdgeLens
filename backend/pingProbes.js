@@ -2,9 +2,8 @@
 const axios = require('axios');
 const yargs = require('yargs');
 
-const WORKER_URL = 'https://edgelens-probe.edg-akulkarni.workers.dev'; // ← Replace with your actual Worker URL
-const BACKEND_API = 'http://localhost:3001/api/probe';
-
+const WORKER_URL = 'https://edgelens-probe.edg-akulkarni.workers.dev'; 
+const BACKEND_API = 'https://edgelens.letsdemo.co/api/probe';
 
 const argv = yargs.option('region', {
   type: 'string',
